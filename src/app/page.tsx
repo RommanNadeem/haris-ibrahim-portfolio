@@ -24,6 +24,7 @@ import {
   contentBlocks,
   heroContent,
   profileHeadline,
+  type ContentBlock,
 } from "./data/profile";
 
 const featureIcons: Record<string, ComponentType<{ className?: string }>> = {
@@ -93,14 +94,20 @@ export default function Home() {
     Icon: ComponentType<{ className?: string }>;
   }[];
 
+  const isBulletsBlockWithTitle = (
+    block: ContentBlock,
+    title: string,
+  ): block is Extract<ContentBlock, { type: "bullets"; title?: string }> =>
+    block.type === "bullets" && block.title === title;
+
   const skillsBlock =
-    contentBlocks.find(
-      (block) => block.title === "Skills and Tools" && block.type === "bullets",
+    contentBlocks.find((block) =>
+      isBulletsBlockWithTitle(block, "Skills and Tools"),
     ) ?? null;
 
   const certificationsBlock =
-    contentBlocks.find(
-      (block) => block.title === "Certifications" && block.type === "bullets",
+    contentBlocks.find((block) =>
+      isBulletsBlockWithTitle(block, "Certifications"),
     ) ?? null;
 
   const orderedBlocks = [
