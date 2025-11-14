@@ -295,7 +295,7 @@ export default function Home() {
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <span className="rounded-full bg-white px-2 py-0.5 text-[11px] uppercase text-slate-900">
+                          <span className="rounded-full border border-white/20 bg-white/10 px-2 py-0.5 text-[11px] font-semibold uppercase text-white">
                             {caseLabels[item.iconKey || ""] || item.iconKey || "Case"}
                           </span>
                         </div>
@@ -341,14 +341,14 @@ export default function Home() {
               const Icon = iconKey ? featureIcons[iconKey] : undefined;
               if (!Icon) {
                 return (
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-[11px] font-semibold text-slate-200">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-[11px] font-semibold text-slate-200">
                     {iconKey?.slice(0, 2).toUpperCase() || "•"}
                   </span>
                 );
               }
               return (
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-slate-900">
-                  <Icon className="h-4 w-4" />
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white">
+                  <Icon className="h-4 w-4 text-white" />
                 </span>
               );
             };
@@ -514,7 +514,7 @@ export default function Home() {
               <ul className="space-y-3 text-slate-200">
                 {skillsBlock.items.map((item) => (
                   <li key={item} className="flex items-start gap-2.5">
-                    <span className="mt-1 flex h-4 w-4 items-center justify-center rounded-full bg-white text-[9px] text-slate-900">
+                    <span className="mt-1 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400/20 text-[10px] font-semibold text-emerald-200">
                       ✓
                     </span>
                     <span className="text-sm leading-relaxed text-slate-100">
@@ -544,7 +544,7 @@ export default function Home() {
               <ul className="space-y-3 text-slate-200">
                 {certificationsBlock.items.map((item) => (
                   <li key={item} className="flex items-start gap-2.5">
-                    <span className="mt-1 flex h-4 w-4 items-center justify-center rounded-full bg-white text-[9px] text-slate-900">
+                    <span className="mt-1 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400/20 text-[10px] font-semibold text-emerald-200">
                       ✓
                     </span>
                     <span className="text-sm leading-relaxed text-slate-100">
