@@ -94,56 +94,67 @@ export default function Home() {
     Icon: ComponentType<{ className?: string }>;
   }[];
 
-  const isBulletsBlockWithTitle = (
-    block: ContentBlock,
-    title: string,
-  ): block is Extract<ContentBlock, { type: "bullets"; title?: string }> =>
-    block.type === "bullets" && block.title === title;
+  const findCalloutBlock = () =>
+    contentBlocks.find(
+      (block): block is Extract<ContentBlock, { type: "callout" }> =>
+        block.type === "callout",
+    );
 
-  const skillsBlock =
-    contentBlocks.find((block) =>
-      isBulletsBlockWithTitle(block, "Skills and Tools"),
-    ) ?? null;
+  const findMetricsBlock = () =>
+    contentBlocks.find(
+      (block): block is Extract<ContentBlock, { type: "metrics" }> =>
+        block.type === "metrics",
+    );
 
-  const certificationsBlock =
-    contentBlocks.find((block) =>
-      isBulletsBlockWithTitle(block, "Certifications"),
-    ) ?? null;
+  const findFeatureGridBlock = (title: string) =>
+    contentBlocks.find(
+      (block): block is Extract<
+        ContentBlock,
+        { type: "feature_grid"; title?: string }
+      > => block.type === "feature_grid" && block.title === title,
+    );
+
+  const findBulletsBlock = (title: string) =>
+    contentBlocks.find(
+      (block): block is Extract<
+        ContentBlock,
+        { type: "bullets"; title?: string }
+      > => block.type === "bullets" && block.title === title,
+    );
+
+  const skillsBlock = findBulletsBlock("Skills and Tools") ?? null;
+  const certificationsBlock = findBulletsBlock("Certifications") ?? null;
 
   const orderedBlocks = [
     {
       type: "callout" as const,
       id: "about",
-      content: contentBlocks.find((block) => block.type === "callout"),
+      content: findCalloutBlock(),
     },
     {
       type: "metrics" as const,
       id: "snapshot",
-      content: contentBlocks.find((block) => block.type === "metrics"),
+      content: findMetricsBlock(),
     },
     {
       type: "feature_grid" as const,
       id: "experience-overview",
-      content: contentBlocks.find(
-        (block) => block.title === "Experience Overview",
-      ),
+      content: findFeatureGridBlock("Experience Overview"),
     },
     {
       type: "feature_grid" as const,
       id: "case-studies",
-      content: contentBlocks.find((block) => block.title === "Case Studies"),
+      content: findFeatureGridBlock("Case Studies"),
     },
     {
       type: "feature_grid" as const,
       id: "what-i-do",
-      content: contentBlocks.find((block) => block.title === "What I Do"),
+      content: findFeatureGridBlock("What I Do"),
     },
     {
       type: "bullets" as const,
       id: "selected-career-highlights",
-      content: contentBlocks.find(
-        (block) => block.title === "Selected Career Highlights",
-      ),
+      content: findBulletsBlock("Selected Career Highlights"),
     },
   ];
 
